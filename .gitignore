@@ -1,0 +1,8 @@
+# Dependencies
+vendor
+
+# IDE stuff
+.idea
+
+# Project
+utils.txt

@@ -1,0 +1,23 @@
+{
+  "name": "nntoan/magallanes-magento2",
+  "description": "Magento 2 tasks for Magallanes v4",
+  "homepage": "https://github.com/nntoan/magallanes-magento2",
+  "license": "MIT",
+  "type": "library",
+  "keywords": ["deployment", "magallanes"],
+  "authors": [
+    {
+      "name": "Toan Nguyen",
+      "email": "me@nntoan.com"
+    }
+  ],
+  "require": {
+    "php": "^7.1.3",
+    "andres-montanez/magallanes": "^4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Mage\\Magento\\": "src/"
+    }
+  }
+}
