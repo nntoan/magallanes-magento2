@@ -2,27 +2,27 @@
 A bunch of tasks for Magento 2 to play with Magallanes v4.
 
 ## Available commands
-magento/cache-clean
-magento/cache-flush
-magento/cache-disable
-magento/cache-enable
-magento/cache-status
-magento/compile-code
-magento/compile-themes
-magento/config-dump
-magento/config-import
-magento/config-verify
-magento/data-upgrade
-magento/schema-upgrade
-magento/db-status
-magento/deploy-mode-production
-magento/show-app-mode
-magento/maintenance-on
-magento/maintenance-off
-magento/maintenance-status
-magento/setup-permissions
-magento/setup-upgrade
-magento/custom
+- magento/cache-clean
+- magento/cache-flush
+- magento/cache-disable
+- magento/cache-enable
+- magento/cache-status
+- magento/compile-code
+- magento/compile-themes
+- magento/config-dump
+- magento/config-import
+- magento/config-verify
+- magento/data-upgrade
+- magento/schema-upgrade
+- magento/db-status
+- magento/deploy-mode-production
+- magento/show-app-mode
+- magento/maintenance-on
+- magento/maintenance-off
+- magento/maintenance-status
+- magento/setup-permissions
+- magento/setup-upgrade
+- magento/custom
 
 ## Installation
 Install via composer:
