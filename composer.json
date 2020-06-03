@@ -5,6 +5,7 @@
   "license": "MIT",
   "type": "library",
   "keywords": ["deployment", "magallanes"],
+  "version": "1.0.0",
   "authors": [
     {
       "name": "Toan Nguyen",
