@@ -136,103 +136,152 @@ magephp:
 
 ## Documentation
 
-###### magento/cache-clean
+#### magento/cache-clean
+
 Description: Clean Magento cache by types
+
 Magento command: `bin/magento cache:clean`
 
-###### magento/cache-flush
+#### magento/cache-flush
+
 Description: Flush Magento cache storage
+
 Magento command: `bin/magento cache:flush`
 
-###### magento/cache-enable
+#### magento/cache-enable
+
 Description: Enable Magento cache
+
 Magento command: `bin/magento cache:enable`
 
-###### magento/cache-disable
+#### magento/cache-disable
+
 Description: Disable Magento cache
+
 Magento command: `bin/magento cache:disable`
 
-###### magento/cache-status
+#### magento/cache-status
+
 Description: Check Magento cache enabled status
+
 Magento command: `bin/magento cache:status`
 
-###### magento/compile-code
+#### magento/compile-code
+
 Description: Runs dependency injection compilation routine
+
 Magento command: `bin/magento setup:di:compile`
 
-###### magento/compile-themes
+#### magento/compile-themes
+
 Description: Deploys static view files
+
 Magento command: `bin/magento setup:static-content:deploy`
+
 Options:
   - flags (optional): all options and agruments you would like to pass to this command. Eg: "en_AU en_US --exclude-theme=Magento/luma"
 
-###### magento/config-dump
+#### magento/config-dump
+
 Description: Create dump of application config
+
 Magento command: `bin/magento app:config:dump`
+
 Options:
   - params (optional): Config scopes you would like to dump. Eg: "scopes themes i18n"
 
-###### magento/config-import
+#### magento/config-import
+
 Description: Import data from shared config files
+
 Magento command: `bin/magento app:config:import`
 
-###### magento/config-verify
+#### magento/config-verify
+
 Description: Checks if config propagation requires update
+
 Magento command: `bin/magento app:config:status`
 
-###### magento/data-upgrade
+#### magento/data-upgrade
+
 Description: Upgrades data fixtures
+
 Magento command: `bin/magento setup:db-data:upgrade`
 
-###### magento/schema-upgrade
+#### magento/schema-upgrade
+
 Description: Upgrades database schema
+
 Magento command: `bin/magento setup:db-schema:upgrade`
 
-###### magento/db-status
+#### magento/db-status
+
 Description: Checks if DB schema or data requires upgrade
+
 Magento command: `bin/magento setup:db:status`
 
-###### magento/deploy-mode-production
+#### magento/deploy-mode-production
+
 Description: Enables production mode
+
 Magento command: `bin/magento deploy:mode:set production --skip-compilation`
 
-###### magento/show-app-mode
+#### magento/show-app-mode
+
 Description: Displays current application mode
+
 Magento command: `bin/magento deploy:mode:show`
 
-###### magento/maintenance-on
+#### magento/maintenance-on
+
 Description: Enable maintenance mode
+
 Magento command: `bin/magento maintenance:enable`
 
-###### magento/maintenance-off
+#### magento/maintenance-off
+
 Description: Disable maintenance mode
+
 Magento command: `bin/magento maintenance:disable`
 
-###### magento/maintenance-status
+#### magento/maintenance-status
+
 Description: Displays maintenance mode status
+
 Magento command: `bin/magento maintenance:status`
 
-###### magento/setup-upgrade
+#### magento/setup-upgrade
+
 Description: Updates the module load sequence and upgrades database schemas and data fixtures
+
 Magento command: `bin/magento setup:upgrade`
+
 Options:
   - zero_downtime (optional): Force keep generated files. Eg: "true/false"
 
-###### magento/setup-permissions
+#### magento/setup-permissions
+
 Description: Updates the module load sequence and upgrades database schemas and data fixtures
+
 File command: `find . -type f ! -perm %s -exec chmod %s {}`
+
 Directory command: `find . -type d ! -perm %s -exec chmod %s {}`
+
 Options:
   - file (mandatory): Permission you would like to set for all files. Eg: "0644"
   - directory (mandatory): Permission you would like to set for all directories. Eg: "0755"
 
-###### magento/custom
+#### magento/custom
+
 Description: Run a specified `magento` command. Use only if you can't create a proper custom Magallanes task.  
+
 Magento command: `bin/magento <your command>`
+
 Options:
   - command (mandatory): the magento command to run, without the "magento" part. Eg: "indexer:reindex"
 
 ## Contributions
+
 Feel free to submit your pull requests to add new Magento commands. Your requests
 must be done on branch master.
 Rules :
