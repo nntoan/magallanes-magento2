@@ -37,7 +37,8 @@ abstract class AbstractTask extends \Mage\Task\AbstractTask
     protected function getOptions()
     {
         return array_merge(
-            $this->runtime->getMergedOption('magento'),
+            $this->getMagentoOptions(),
+            $this->runtime->getMergedOption('magento', []),
             $this->options
         );
     }
@@ -61,10 +62,7 @@ abstract class AbstractTask extends \Mage\Task\AbstractTask
             $cmd = sprintf($this->magentoWithDirCmd, $options['magento_dir'], $command);
         }
 
-        if ($this->isUseDockerExists() === true
-            && $this->isMagentoDirExists() === false
-            && $options['use_docker'] === true
-        ) {
+        if ($this->isUseDockerExists() === true && $this->isMagentoDirExists() === false) {
             $cmd = sprintf($this->dockerMagentoCmd, $command);
         }
 
@@ -85,5 +83,10 @@ abstract class AbstractTask extends \Mage\Task\AbstractTask
     protected function isUseDockerExists()
     {
         return array_key_exists('use_docker', $this->getOptions());
+    }
+
+    protected function getMagentoOptions()
+    {
+        return [];
     }
 }
