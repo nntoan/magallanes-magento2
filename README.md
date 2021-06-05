@@ -172,6 +172,9 @@ Description: Runs dependency injection compilation routine
 
 Magento command: `bin/magento setup:di:compile`
 
+Options:
+  - timeout (optional): Use to set timeout for the command can be on the server (default is 120).
+
 #### magento/compile-themes
 
 Description: Deploys static view files
@@ -180,6 +183,7 @@ Magento command: `bin/magento setup:static-content:deploy`
 
 Options:
   - flags (optional): all options and agruments you would like to pass to this command. Eg: "en_AU en_US --exclude-theme=Magento/luma"
+  - timeout (optional): Use to set timeout for the command can be on the server (default is 120).
 
 #### magento/config-dump
 

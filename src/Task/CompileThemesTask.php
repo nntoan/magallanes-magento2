@@ -13,7 +13,7 @@ namespace Mage\Magento\Task;
  * Deploys static view files.
  *
  * on-deploy:
- *     - magento/compile-themes: { flags: 'en_AU en_US' }
+ *     - magento/compile-themes: { flags: 'en_AU en_US', timeout: 300 }
  */
 class CompileThemesTask extends AbstractTask
 {
@@ -30,13 +30,19 @@ class CompileThemesTask extends AbstractTask
     public function execute()
     {
         $parameters = ' ';
+        $timeout = 120;
+
         if (array_key_exists('flags', $this->options)) {
             $parameters .= $this->options['flags'];
         }
 
+        if (array_key_exists('timeout', $this->options)) {
+            $timeout = $this->options['timeout'];
+        }
+
         $cmd = $this->buildMagentoCommand('setup:static-content:deploy' . $parameters);
 
-        $process = $this->runtime->runCommand(trim($cmd));
+        $process = $this->runtime->runCommand(trim($cmd), $timeout);
 
         return $process->isSuccessful();
     }

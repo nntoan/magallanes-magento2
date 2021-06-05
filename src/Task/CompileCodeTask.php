@@ -13,7 +13,7 @@ namespace Mage\Magento\Task;
  * Runs dependency injection compilation routine.
  *
  * on-deploy:
- *     - magento/compile-code
+ *     - magento/compile-code: { timeout: 300 }
  */
 class CompileCodeTask extends AbstractTask
 {
@@ -29,9 +29,14 @@ class CompileCodeTask extends AbstractTask
 
     public function execute()
     {
+        $timeout = 120;
         $cmd = $this->buildMagentoCommand('setup:di:compile');
 
-        $process = $this->runtime->runCommand(trim($cmd));
+        if (array_key_exists('timeout', $this->options)) {
+            $timeout = $this->options['timeout'];
+        }
+
+        $process = $this->runtime->runCommand(trim($cmd), $timeout);
 
         return $process->isSuccessful();
     }
