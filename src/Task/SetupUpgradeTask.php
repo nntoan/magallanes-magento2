@@ -13,7 +13,7 @@ namespace Mage\Magento\Task;
  * Runs setup upgrade with flag.
  *
  * on-deploy:
- *     - magento/setup-upgrade: { zero_downtime: true }
+ *     - magento/setup-upgrade: { zero_downtime: true, timeout: 300 }
  */
 class SetupUpgradeTask extends AbstractTask
 {
@@ -29,16 +29,20 @@ class SetupUpgradeTask extends AbstractTask
 
     public function execute()
     {
+        $timeout = 120;
         $parameter = ' ';
         if (array_key_exists('zero_downtime', $this->options)) {
             $parameter .= '--keep-generated';
+	}
+
+	if (array_key_exists('timeout', $this->options)) {
+            $timeout = $this->options['timeout'];
         }
 
         $cmd = $this->buildMagentoCommand('setup:upgrade' . $parameter);
 
-        $process = $this->runtime->runCommand(trim($cmd));
+        $process = $this->runtime->runCommand(trim($cmd), $timeout);
 
         return $process->isSuccessful();
     }
-
 }

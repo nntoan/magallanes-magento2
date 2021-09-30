@@ -262,6 +262,7 @@ Magento command: `bin/magento setup:upgrade`
 
 Options:
   - zero_downtime (optional): Force keep generated files. Eg: "true/false"
+  - timeout (optional): Use to set timeout for the command can be on the server (default is 120).
 
 #### magento/setup-permissions
 
