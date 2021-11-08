@@ -1,6 +1,6 @@
 <?php
 /**
- * MagentoSetupUpgradeTask.
+ * InstallMediaToolTask.
  *
  * @category  MageMagento
  *
@@ -10,36 +10,32 @@
 namespace Mage\Magento\Task;
 
 /**
- * Runs setup upgrade with flag.
+ * Install NodeJS dependencies for media-tool.
  *
  * on-deploy:
- *     - magento/setup-upgrade: { zero_downtime: true, timeout: 300 }
+ *     - nodejs/install-media-tool { timeout: 300 }
  */
-class SetupUpgradeTask extends AbstractTask
+class InstallMediaToolTask extends AbstractTask
 {
     public function getName()
     {
-        return 'magento/setup-upgrade';
+        return 'nodejs/install-media-tool';
     }
 
     public function getDescription()
     {
-        return '[Magento] Updates the module load sequence and upgrades database schemas and data fixtures';
+        return '[NodeJS] Install Media Tool';
     }
 
     public function execute()
     {
         $timeout = 120;
-        $parameter = ' ';
-        if (array_key_exists('zero_downtime', $this->options)) {
-            $parameter .= '--keep-generated';
-        }
 
         if (array_key_exists('timeout', $this->options)) {
             $timeout = $this->options['timeout'];
         }
 
-        $cmd = $this->buildMagentoCommand('setup:upgrade' . $parameter);
+        $cmd = $this->buildCustomCommand('tool-media', 'npm i --silent');
 
         $process = $this->runtime->runCommand(trim($cmd), $timeout);
 

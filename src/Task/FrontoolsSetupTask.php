@@ -1,6 +1,6 @@
 <?php
 /**
- * MagentoSetupUpgradeTask.
+ * FrontoolsSetup.
  *
  * @category  MageMagento
  *
@@ -10,36 +10,32 @@
 namespace Mage\Magento\Task;
 
 /**
- * Runs setup upgrade with flag.
+ * Setup Frontools and its dependencies.
  *
  * on-deploy:
- *     - magento/setup-upgrade: { zero_downtime: true, timeout: 300 }
+ *     - frontools/setup { timeout: 300 }
  */
-class SetupUpgradeTask extends AbstractTask
+class FrontoolsSetupTask extends AbstractTask
 {
     public function getName()
     {
-        return 'magento/setup-upgrade';
+        return 'frontools/setup';
     }
 
     public function getDescription()
     {
-        return '[Magento] Updates the module load sequence and upgrades database schemas and data fixtures';
+        return '[Frontools] Setup Gulp';
     }
 
     public function execute()
     {
         $timeout = 120;
-        $parameter = ' ';
-        if (array_key_exists('zero_downtime', $this->options)) {
-            $parameter .= '--keep-generated';
-        }
 
         if (array_key_exists('timeout', $this->options)) {
             $timeout = $this->options['timeout'];
         }
 
-        $cmd = $this->buildMagentoCommand('setup:upgrade' . $parameter);
+        $cmd = $this->buildCustomCommand('vendor/snowdog/frontools', 'npm i --silent; gulp setup');
 
         $process = $this->runtime->runCommand(trim($cmd), $timeout);
 

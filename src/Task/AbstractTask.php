@@ -25,7 +25,9 @@ abstract class AbstractTask extends \Mage\Task\AbstractTask
 {
     private $magentoCommand = '/usr/bin/env php -f bin/magento -- %s';
     private $magentoWithDirCmd = '(cd %s; /usr/bin/env php -f bin/magento -- %s)';
-    private $dockerMagentoCmd = 'docker exec -iu www php-fpm sh -c "cd /var/www/current/src; bin/magento %s"';
+    private $customWithDirCmd = '(cd %s; %s)';
+    private $dockerMagentoCmd = 'docker exec -iu www php-fpm sh -c "cd /var/www/%s/src; bin/magento %s"';
+    private $dockerCustomCmd = 'docker exec -iu www php-fpm sh -c "cd /var/www/%s/%s; %s"';
 
     /**
      * Gets options for the global, then the env, then the single task levels, and
@@ -57,13 +59,43 @@ abstract class AbstractTask extends \Mage\Task\AbstractTask
     {
         $options = $this->getOptions();
         $cmd = sprintf($this->magentoCommand, $command);
+        $hostPath = rtrim($this->runtime->getEnvOption('host_path'), '/');
+        $currentReleaseId = $this->runtime->getReleaseId();
+        $withoutDockerReleaseDir = sprintf('%s/releases/%s', $hostPath, $currentReleaseId);
+        $dockerReleaseDir = sprintf('releases/%s', $currentReleaseId);
 
         if ($this->isMagentoDirExists() === true && $this->isUseDockerExists() === false) {
-            $cmd = sprintf($this->magentoWithDirCmd, $options['magento_dir'], $command);
+            $cmd = sprintf($this->magentoWithDirCmd, $withoutDockerReleaseDir, $command);
         }
 
         if ($this->isUseDockerExists() === true && $this->isMagentoDirExists() === false) {
-            $cmd = sprintf($this->dockerMagentoCmd, $command);
+            $cmd = sprintf($this->dockerMagentoCmd, $dockerReleaseDir, $command);
+        }
+
+        return $cmd;
+    }
+
+    /**
+     * Builds a custom command. Could be NodeJS, Python..etc
+     *
+     * @param string $targetDir
+     * @param string $command
+     *
+     * @return string
+     */
+    protected function buildCustomCommand($targetDir = '', $command = '')
+    {
+        $hostPath = rtrim($this->runtime->getEnvOption('host_path'), '/');
+        $currentReleaseId = $this->runtime->getReleaseId();
+        $withoutDockerReleaseDir = sprintf('%s/releases/%s', $hostPath, $currentReleaseId);
+        $dockerReleaseDir = sprintf('releases/%s', $currentReleaseId);
+
+        if ($this->isMagentoDirExists() === true && $this->isUseDockerExists() === false) {
+            $cmd = sprintf($this->customWithDirCmd, $withoutDockerReleaseDir, $command);
+        }
+
+        if ($this->isUseDockerExists() === true && $this->isMagentoDirExists() === false) {
+            $cmd = sprintf($this->dockerCustomCmd, $dockerReleaseDir, $targetDir, $command);
         }
 
         return $cmd;

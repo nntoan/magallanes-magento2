@@ -1,6 +1,6 @@
 <?php
 /**
- * MagentoSetupUpgradeTask.
+ * FrontoolsCompileThemesTask.
  *
  * @category  MageMagento
  *
@@ -10,36 +10,32 @@
 namespace Mage\Magento\Task;
 
 /**
- * Runs setup upgrade with flag.
+ * Compile theme static view files with Frontools.
  *
  * on-deploy:
- *     - magento/setup-upgrade: { zero_downtime: true, timeout: 300 }
+ *     - frontools/compile-themes { timeout: 300 }
  */
-class SetupUpgradeTask extends AbstractTask
+class FrontoolsCompileThemesTask extends AbstractTask
 {
     public function getName()
     {
-        return 'magento/setup-upgrade';
+        return 'frontools/compile-themes';
     }
 
     public function getDescription()
     {
-        return '[Magento] Updates the module load sequence and upgrades database schemas and data fixtures';
+        return '[Frontools] Compile theme files';
     }
 
     public function execute()
     {
         $timeout = 120;
-        $parameter = ' ';
-        if (array_key_exists('zero_downtime', $this->options)) {
-            $parameter .= '--keep-generated';
-        }
 
         if (array_key_exists('timeout', $this->options)) {
             $timeout = $this->options['timeout'];
         }
 
-        $cmd = $this->buildMagentoCommand('setup:upgrade' . $parameter);
+        $cmd = $this->buildCustomCommand('tools', 'gulp styles --prod --ci && gulp babel --prod && gulp svg');
 
         $process = $this->runtime->runCommand(trim($cmd), $timeout);
 

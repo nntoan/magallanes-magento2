@@ -24,6 +24,10 @@ A bunch of tasks for Magento 2 to play with Magallanes v4.
 - magento/setup-upgrade
 - magento/custom
 
+### Custom commands
+- frontools/setup
+- frontools/compile-themes
+
 ## Installation
 Install via composer:
 ```
