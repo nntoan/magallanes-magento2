@@ -35,7 +35,7 @@ class FrontoolsCompileThemesTask extends AbstractTask
             $timeout = $this->options['timeout'];
         }
 
-        $cmd = $this->buildCustomCommand('tools', 'gulp styles --prod --ci && gulp babel --prod && gulp svg');
+        $cmd = $this->buildCustomCommand('src/tools', 'gulp styles --prod --ci && gulp babel --prod && gulp svg');
 
         $process = $this->runtime->runCommand(trim($cmd), $timeout);
 

@@ -35,7 +35,7 @@ class InstallMediaToolTask extends AbstractTask
             $timeout = $this->options['timeout'];
         }
 
-        $cmd = $this->buildCustomCommand('tool-media', 'npm i --silent');
+        $cmd = $this->buildCustomCommand('src/tools-media', 'npm i --silent');
 
         $process = $this->runtime->runCommand(trim($cmd), $timeout);
 
