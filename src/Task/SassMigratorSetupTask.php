@@ -35,14 +35,10 @@ class SassMigratorSetupTask extends AbstractTask
             $timeout = $this->options['timeout'];
         }
 
-        if ($this->isArm64Machine() === true) {
-            $cmd = $this->buildCustomCommand('/', 'npm i -g sass-migrator', true);
+        $cmd = $this->buildCustomCommand('/', 'npm i -g sass-migrator', true);
 
-            $process = $this->runtime->runCommand(trim($cmd), $timeout);
+        $process = $this->runtime->runCommand(trim($cmd), $timeout);
 
-            return $process->isSuccessful();
-        }
-
-        return true;
+        return $process->isSuccessful();
     }
 }
