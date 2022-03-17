@@ -28,6 +28,7 @@ abstract class AbstractTask extends \Mage\Task\AbstractTask
     private $customWithDirCmd = '(cd %s; %s)';
     private $dockerMagentoCmd = 'docker exec -iu www php-fpm sh -c "cd /var/www/%s/src; bin/magento %s"';
     private $dockerCustomCmd = 'docker exec -iu www php-fpm sh -c "cd /var/www/%s/%s; %s"';
+    private $dockerCustomRootCmd = 'docker exec -i php-fpm sh -c "cd /var/www/%s/%s; %s"';
 
     /**
      * Gets options for the global, then the env, then the single task levels, and
@@ -80,10 +81,11 @@ abstract class AbstractTask extends \Mage\Task\AbstractTask
      *
      * @param string $targetDir
      * @param string $command
+     * @param bool $isRoot
      *
      * @return string
      */
-    protected function buildCustomCommand($targetDir = '', $command = '')
+    protected function buildCustomCommand($targetDir = '', $command = '', $isRoot = false)
     {
         $hostPath = rtrim($this->runtime->getEnvOption('host_path'), '/');
         $currentReleaseId = $this->runtime->getReleaseId();
@@ -96,6 +98,10 @@ abstract class AbstractTask extends \Mage\Task\AbstractTask
 
         if ($this->isUseDockerExists() === true && $this->isMagentoDirExists() === false) {
             $cmd = sprintf($this->dockerCustomCmd, $dockerReleaseDir, $targetDir, $command);
+        }
+
+        if ($this->isUseDockerExists() === true && $this->isMagentoDirExists() === false && $isRoot === true) {
+            $cmd = sprintf($this->dockerCustomRootCmd, $dockerReleaseDir, $targetDir, $command);
         }
 
         return $cmd;
@@ -115,6 +121,22 @@ abstract class AbstractTask extends \Mage\Task\AbstractTask
     protected function isUseDockerExists()
     {
         return array_key_exists('use_docker', $this->getOptions());
+    }
+
+    /**
+     * @return bool
+     */
+    protected function isArm64Machine()
+    {
+        return posix_uname()['machine'] === 'aarch64';
+    }
+
+    /**
+     * @return bool
+     */
+    protected function isAmd64Machine()
+    {
+        return posix_uname()['machine'] === 'amd64';
     }
 
     protected function getMagentoOptions()

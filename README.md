@@ -27,6 +27,9 @@ A bunch of tasks for Magento 2 to play with Magallanes v4.
 ### Custom commands
 - frontools/setup
 - frontools/compile-themes
+- sass/setup
+- sass-migrator/setup
+- sass-migrator/execute
 
 ## Installation
 Install via composer:

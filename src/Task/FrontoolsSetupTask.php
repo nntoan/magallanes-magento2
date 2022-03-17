@@ -35,7 +35,7 @@ class FrontoolsSetupTask extends AbstractTask
             $timeout = $this->options['timeout'];
         }
 
-        $cmd = $this->buildCustomCommand('src/vendor/snowdog/frontools', 'npm i --silent; gulp setup');
+        $cmd = $this->buildCustomCommand('src/vendor/snowdog/frontools', 'yarn install; gulp setup');
 
         $process = $this->runtime->runCommand(trim($cmd), $timeout);
 
