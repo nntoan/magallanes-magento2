@@ -1,6 +1,6 @@
 <?php
 /**
- * FrontoolsSetup.
+ * MagepackBundle.
  *
  * @category  MageMagento
  *
@@ -13,7 +13,7 @@ namespace Mage\Magento\Task;
  * Generate Magepack bundle.
  *
  * on-deploy:
- *     - magepack/bundle { timeout: 300,  }
+ *     - magepack/bundle { timeout: 300, path: './path/to/magepack.config.js' }
  */
 class MagepackBundleTask extends AbstractTask
 {
