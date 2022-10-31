@@ -2,6 +2,7 @@
 A bunch of tasks for Magento 2 to play with Magallanes v4.
 
 ## Available commands
+- magento/apply-patches
 - magento/cache-clean
 - magento/cache-flush
 - magento/cache-disable
