@@ -30,6 +30,7 @@ class ApplyQualityPatchesTask extends AbstractTask
     public function execute()
     {
         $timeout = 120;
+        $onParamPatches = '';
         $availablePatches = $this->runtime->getMergedOption('patches');
 
         if (array_key_exists('timeout', $this->options)) {
@@ -37,9 +38,10 @@ class ApplyQualityPatchesTask extends AbstractTask
         }
 
         if (array_key_exists('patches', $this->options)) {
-            $listPatches = implode(' ', $availablePatches) . ' ' . $options['patches'];
+            $onParamPatches = ' ' . $options['patches'];
         }
 
+        $listPatches = implode(' ', $availablePatches) . $onParamPatches;
         $cmd = $this->buildCustomCommand('src/', './vendor/bin/magento-patches apply' . $listPatches);
 
         $process = $this->runtime->runCommand(trim($cmd), $timeout);
