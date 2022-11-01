@@ -42,7 +42,7 @@ class ApplyQualityPatchesTask extends AbstractTask
         }
 
         $listPatches = implode(' ', $availablePatches) . $onParamPatches;
-        $cmd = $this->buildCustomCommand('src/', './vendor/bin/magento-patches apply' . $listPatches);
+        $cmd = $this->buildCustomCommand('src/', './vendor/bin/magento-patches apply ' . $listPatches);
 
         $process = $this->runtime->runCommand(trim($cmd), $timeout);
 
