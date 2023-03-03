@@ -31,6 +31,8 @@ A bunch of tasks for Magento 2 to play with Magallanes v4.
 - sass/setup
 - sass-migrator/setup
 - sass-migrator/execute
+- magepack/setup
+- magepack/bundle
 
 ## Installation
 Install via composer:

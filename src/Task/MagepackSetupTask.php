@@ -1,6 +1,6 @@
 <?php
 /**
- * FrontoolsSetup.
+ * MagepackSetup.
  *
  * @category  MageMagento
  *
@@ -10,32 +10,32 @@
 namespace Mage\Magento\Task;
 
 /**
- * Setup Frontools and its dependencies.
+ * Generate Magepack bundle.
  *
  * on-deploy:
- *     - frontools/setup { timeout: 300 }
+ *     - magepack/setup { timeout: 300 }
  */
-class FrontoolsSetupTask extends AbstractTask
+class MagepackSetupTask extends AbstractTask
 {
     public function getName()
     {
-        return 'frontools/setup';
+        return 'magepack/setup';
     }
 
     public function getDescription()
     {
-        return '[Frontools] Setup Gulp';
+        return '[Magepack] Set up';
     }
 
     public function execute()
     {
-        $timeout = 120;
+        $timeout = 300;
 
         if (array_key_exists('timeout', $this->options)) {
             $timeout = $this->options['timeout'];
         }
 
-        $cmd = $this->buildCustomCommand('src/vendor/snowdog/frontools', 'yarn install --ignore-scripts; gulp setup');
+        $cmd = $this->buildCustomCommand('/', 'npm i -g magepack', true);
 
         $process = $this->runtime->runCommand(trim($cmd), $timeout);
 

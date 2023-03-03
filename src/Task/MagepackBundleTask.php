@@ -40,7 +40,7 @@ class MagepackBundleTask extends AbstractTask
             $path = $this->options['path'];
         }
 
-        $cmd = $this->buildCustomCommand('src/tools', sprintf('yarn magepackBundle --config %s', $path));
+        $cmd = $this->buildCustomCommand('src', sprintf('magepack bundle --config %s', $path));
 
         $process = $this->runtime->runCommand(trim($cmd), $timeout);
 

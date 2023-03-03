@@ -35,10 +35,11 @@ class NodeSassSetupTask extends AbstractTask
             $timeout = $this->options['timeout'];
         }
 
-        $cmd = $this->buildCustomCommand('src/vendor/snowdog/frontools', 'yarn install; npm i --silent node-sass@npm:sass; yarn install');
+        $cmd = $this->buildCustomCommand(
+            'src/vendor/snowdog/frontools', 'yarn install --ignore-scripts; npm uninstall --silent node-sass; npm i --silent node-sass@npm:sass; npm rebuild node-sass;');
 
         $process = $this->runtime->runCommand(trim($cmd), $timeout);
 
-        return true; // force the process going on
+        return $process->isSuccessful();
     }
 }
