@@ -62,10 +62,15 @@ abstract class AbstractTask extends \Mage\Task\AbstractTask
         $cmd = sprintf($this->magentoCommand, $command);
         $hostPath = rtrim($this->runtime->getEnvOption('host_path'), '/');
         $currentReleaseId = $this->runtime->getReleaseId();
-        $withoutDockerReleaseDir = sprintf('%s/releases/%s', $hostPath, $currentReleaseId);
         $dockerReleaseDir = sprintf('releases/%s', $currentReleaseId);
 
         if ($this->isMagentoDirExists() === true && $this->isUseDockerExists() === false) {
+            $withoutDockerReleaseDir = sprintf(
+                '%s/releases/%s/%s',
+                $hostPath,
+                $currentReleaseId,
+                trim($this->options['magento_dir'], './')
+            );
             $cmd = sprintf($this->magentoWithDirCmd, $withoutDockerReleaseDir, $command);
         }
 
@@ -89,10 +94,15 @@ abstract class AbstractTask extends \Mage\Task\AbstractTask
     {
         $hostPath = rtrim($this->runtime->getEnvOption('host_path'), '/');
         $currentReleaseId = $this->runtime->getReleaseId();
-        $withoutDockerReleaseDir = sprintf('%s/releases/%s', $hostPath, $currentReleaseId);
         $dockerReleaseDir = sprintf('releases/%s', $currentReleaseId);
 
         if ($this->isMagentoDirExists() === true && $this->isUseDockerExists() === false) {
+            $withoutDockerReleaseDir = sprintf(
+                '%s/releases/%s/%s',
+                $hostPath,
+                $currentReleaseId,
+                trim($targetDir, './')
+            );
             $cmd = sprintf($this->customWithDirCmd, $withoutDockerReleaseDir, $command);
         }
 
