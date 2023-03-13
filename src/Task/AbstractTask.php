@@ -69,9 +69,9 @@ abstract class AbstractTask extends \Mage\Task\AbstractTask
                 '%s/releases/%s/%s',
                 $hostPath,
                 $currentReleaseId,
-                trim($this->options['magento_dir'], './')
+                trim($options['magento_dir'], './')
             );
-            $cmd = sprintf($this->magentoWithDirCmd, $withoutDockerReleaseDir, $command);
+            $cmd = sprintf($this->magentoWithDirCmd, trim($options['magento_dir'], './'), $command);
         }
 
         if ($this->isUseDockerExists() === true && $this->isMagentoDirExists() === false) {
