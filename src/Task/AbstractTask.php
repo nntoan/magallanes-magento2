@@ -23,8 +23,13 @@ namespace Mage\Magento\Task;
  */
 abstract class AbstractTask extends \Mage\Task\AbstractTask
 {
-    private $magentoCommand = '/usr/bin/env php -f bin/magento -- %s';
-    private $magentoWithDirCmd = '(cd %s; /usr/bin/env php -f bin/magento -- %s)';
+    const ENV_MAGENTO = 'magento';
+    const ENV_PHP_CLI = 'php_cli';
+    const OPT_MAGENTO_DIR = 'magento_dir';
+    const OPT_USE_DOCKER = 'use_docker';
+
+    private $magentoCommand = '/usr/bin/env %s -f bin/magento -- %s';
+    private $magentoWithDirCmd = '(cd %s; /usr/bin/env %s -f bin/magento -- %s)';
     private $customWithDirCmd = '(cd %s; %s)';
     private $dockerMagentoCmd = 'docker exec -iu www php-fpm sh -c "cd /var/www/%s/src; bin/magento %s"';
     private $dockerCustomCmd = 'docker exec -iu www php-fpm sh -c "cd /var/www/%s/%s; %s"';
@@ -41,7 +46,7 @@ abstract class AbstractTask extends \Mage\Task\AbstractTask
     {
         return array_merge(
             $this->getMagentoOptions(),
-            $this->runtime->getMergedOption('magento', []),
+            $this->runtime->getMergedOption(static::ENV_MAGENTO, []),
             $this->options
         );
     }
@@ -59,7 +64,7 @@ abstract class AbstractTask extends \Mage\Task\AbstractTask
     protected function buildMagentoCommand($command = '')
     {
         $options = $this->getOptions();
-        $cmd = sprintf($this->magentoCommand, $command);
+        $cmd = sprintf($this->magentoCommand, $this->getPhpCli(), $command);
         $hostPath = rtrim($this->runtime->getEnvOption('host_path'), '/');
         $currentReleaseId = $this->runtime->getReleaseId();
         $dockerReleaseDir = sprintf('releases/%s', $currentReleaseId);
@@ -69,9 +74,14 @@ abstract class AbstractTask extends \Mage\Task\AbstractTask
                 '%s/releases/%s/%s',
                 $hostPath,
                 $currentReleaseId,
-                trim($options['magento_dir'], './')
+                trim($options[static::OPT_MAGENTO_DIR], './')
             );
-            $cmd = sprintf($this->magentoWithDirCmd, trim($options['magento_dir'], './'), $command);
+            $cmd = sprintf(
+                $this->magentoWithDirCmd,
+                trim($options[static::OPT_MAGENTO_DIR], './'),
+                $this->getPhpCli(),
+                $command
+            );
         }
 
         if ($this->isUseDockerExists() === true && $this->isMagentoDirExists() === false) {
@@ -108,10 +118,9 @@ abstract class AbstractTask extends \Mage\Task\AbstractTask
 
         if ($this->isUseDockerExists() === true && $this->isMagentoDirExists() === false) {
             $cmd = sprintf($this->dockerCustomCmd, $dockerReleaseDir, $targetDir, $command);
-        }
-
-        if ($this->isUseDockerExists() === true && $this->isMagentoDirExists() === false && $isRoot === true) {
-            $cmd = sprintf($this->dockerCustomRootCmd, $dockerReleaseDir, $targetDir, $command);
+            if ($isRoot === true) {
+                $cmd = sprintf($this->dockerCustomRootCmd, $dockerReleaseDir, $targetDir, $command);
+            }
         }
 
         return $cmd;
@@ -122,7 +131,7 @@ abstract class AbstractTask extends \Mage\Task\AbstractTask
      */
     protected function isMagentoDirExists()
     {
-        return array_key_exists('magento_dir', $this->getOptions());
+        return array_key_exists(static::OPT_MAGENTO_DIR, $this->getOptions());
     }
 
     /**
@@ -130,7 +139,7 @@ abstract class AbstractTask extends \Mage\Task\AbstractTask
      */
     protected function isUseDockerExists()
     {
-        return array_key_exists('use_docker', $this->getOptions());
+        return array_key_exists(static::OPT_USE_DOCKER, $this->getOptions());
     }
 
     /**
@@ -147,6 +156,11 @@ abstract class AbstractTask extends \Mage\Task\AbstractTask
     protected function isAmd64Machine()
     {
         return posix_uname()['machine'] === 'amd64';
+    }
+
+    protected function getPhpCli()
+    {
+        return $this->runtime->getEnvOption(static::ENV_PHP_CLI) ?: 'php';
     }
 
     protected function getMagentoOptions()
