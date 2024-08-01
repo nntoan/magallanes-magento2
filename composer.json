@@ -1,6 +1,6 @@
 {
   "name": "nntoan/magallanes-magento2",
-  "description": "Magento 2 tasks for Magallanes v4",
+  "description": "Magento 2 tasks for Magallanes v5",
   "homepage": "https://github.com/nntoan/magallanes-magento2",
   "license": "MIT",
   "type": "library",
@@ -12,7 +12,7 @@
     }
   ],
   "require": {
-    "andres-montanez/magallanes": "^4.0"
+    "andres-montanez/magallanes": "^5.0"
   },
   "autoload": {
     "psr-4": {
