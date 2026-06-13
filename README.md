@@ -1,5 +1,5 @@
-# Magento Tasks for Magallanes v4
-A bunch of tasks for Magento 2 to play with Magallanes v4.
+# Magento Tasks for Magallanes v5
+A bunch of tasks for Magento 2 to play with Magallanes v5.
 
 ## Available commands
 - magento/apply-patches
