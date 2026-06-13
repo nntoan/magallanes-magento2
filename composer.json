@@ -1,10 +1,10 @@
 {
   "name": "nntoan/magallanes-magento2",
-  "description": "Magento 2 tasks for Magallanes v5",
+  "description": "Magento 2 tasks for Magallanes v5 (self-contained, zero external deps conflicts)",
   "homepage": "https://github.com/nntoan/magallanes-magento2",
   "license": "MIT",
   "type": "library",
-  "keywords": ["deployment", "magallanes"],
+  "keywords": ["deployment", "magallanes", "magento2"],
   "authors": [
     {
       "name": "Toan Nguyen",
@@ -12,11 +12,23 @@
     }
   ],
   "require": {
-    "andres-montanez/magallanes": "^5.0"
+    "php": "^8.0",
+    "psr/log": "^2 || ^3",
+    "symfony/console": "^6.0",
+    "symfony/process": "^6.0",
+    "symfony/finder": "^6.0",
+    "symfony/yaml": "^6.0",
+    "symfony/filesystem": "^6.0",
+    "symfony/event-dispatcher": "^6.0"
+  },
+  "replace": {
+    "andres-montanez/magallanes": "*"
   },
   "autoload": {
     "psr-4": {
-      "Mage\\Magento\\": "src/"
+      "Mage\\Magento\\": "src/",
+      "Mage\\": "lib/"
     }
-  }
+  },
+  "bin": ["bin/mage"]
 }
