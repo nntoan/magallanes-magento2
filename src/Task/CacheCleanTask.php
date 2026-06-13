@@ -17,17 +17,17 @@ namespace Mage\Magento\Task;
  */
 class CacheCleanTask extends AbstractTask
 {
-    public function getName()
+    public function getName(): string
     {
         return 'magento/cache-clean';
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return '[Magento] Clean Magento cache by types';
     }
 
-    public function execute()
+    public function execute(): bool
     {
         $cmd = $this->buildMagentoCommand('cache:clean');
 

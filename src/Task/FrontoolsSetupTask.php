@@ -17,17 +17,17 @@ namespace Mage\Magento\Task;
  */
 class FrontoolsSetupTask extends AbstractTask
 {
-    public function getName()
+    public function getName(): string
     {
         return 'frontools/setup';
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return '[Frontools] Setup Gulp';
     }
 
-    public function execute()
+    public function execute(): bool
     {
         $timeout = 120;
 

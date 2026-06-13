@@ -17,17 +17,17 @@ namespace Mage\Magento\Task;
  */
 class ConfigDumpTask extends AbstractTask
 {
-    public function getName()
+    public function getName(): string
     {
         return 'magento/config-dump';
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return '[Magento] Create dump of application config';
     }
 
-    public function execute()
+    public function execute(): bool
     {
         $parameters = ' ';
         if (array_key_exists('params', $this->options)) {

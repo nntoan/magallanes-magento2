@@ -17,17 +17,17 @@ namespace Mage\Magento\Task;
  */
 class CompileThemesTask extends AbstractTask
 {
-    public function getName()
+    public function getName(): string
     {
         return 'magento/compile-themes';
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return '[Magento] Deploys static view files';
     }
 
-    public function execute()
+    public function execute(): bool
     {
         $parameters = ' ';
         $timeout = 120;

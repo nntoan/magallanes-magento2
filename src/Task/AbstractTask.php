@@ -42,7 +42,7 @@ abstract class AbstractTask extends \Mage\Task\AbstractTask
      * @return array
      *   Options to use for the command.
      */
-    protected function getOptions()
+    protected function getOptions(): array
     {
         return array_merge(
             $this->getMagentoOptions(),
@@ -61,7 +61,7 @@ abstract class AbstractTask extends \Mage\Task\AbstractTask
      *
      * @return string
      */
-    protected function buildMagentoCommand($command = '')
+    protected function buildMagentoCommand(string $command = ''): string
     {
         $options = $this->getOptions();
         $cmd = sprintf($this->magentoCommand, $this->getPhpCli(), $command);
@@ -100,7 +100,7 @@ abstract class AbstractTask extends \Mage\Task\AbstractTask
      *
      * @return string
      */
-    protected function buildCustomCommand($targetDir = '', $command = '', $isRoot = false)
+    protected function buildCustomCommand(string $targetDir = '', string $command = '', bool $isRoot = false): string
     {
         $hostPath = rtrim($this->runtime->getEnvOption('host_path'), '/');
         $currentReleaseId = $this->runtime->getReleaseId();
@@ -129,7 +129,7 @@ abstract class AbstractTask extends \Mage\Task\AbstractTask
     /**
      * @return bool
      */
-    protected function isMagentoDirExists()
+    protected function isMagentoDirExists(): bool
     {
         return array_key_exists(static::OPT_MAGENTO_DIR, $this->getOptions());
     }
@@ -137,7 +137,7 @@ abstract class AbstractTask extends \Mage\Task\AbstractTask
     /**
      * @return bool
      */
-    protected function isUseDockerExists()
+    protected function isUseDockerExists(): bool
     {
         return array_key_exists(static::OPT_USE_DOCKER, $this->getOptions());
     }
@@ -145,7 +145,7 @@ abstract class AbstractTask extends \Mage\Task\AbstractTask
     /**
      * @return bool
      */
-    protected function isArm64Machine()
+    protected function isArm64Machine(): bool
     {
         return posix_uname()['machine'] === 'aarch64';
     }
@@ -153,17 +153,17 @@ abstract class AbstractTask extends \Mage\Task\AbstractTask
     /**
      * @return bool
      */
-    protected function isAmd64Machine()
+    protected function isAmd64Machine(): bool
     {
         return posix_uname()['machine'] === 'amd64';
     }
 
-    protected function getPhpCli()
+    protected function getPhpCli(): string
     {
         return $this->runtime->getEnvOption(static::ENV_PHP_CLI) ?: 'php';
     }
 
-    protected function getMagentoOptions()
+    protected function getMagentoOptions(): array
     {
         return [];
     }

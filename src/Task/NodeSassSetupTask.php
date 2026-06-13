@@ -17,17 +17,17 @@ namespace Mage\Magento\Task;
  */
 class NodeSassSetupTask extends AbstractTask
 {
-    public function getName()
+    public function getName(): string
     {
         return 'sass/setup';
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return '[SASS] Setup SCSS for ARM64';
     }
 
-    public function execute()
+    public function execute(): bool
     {
         $timeout = 120;
 

@@ -17,17 +17,17 @@ namespace Mage\Magento\Task;
  */
 class MaintenanceEnableTask extends AbstractTask
 {
-    public function getName()
+    public function getName(): string
     {
         return 'magento/maintenance-on';
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return '[Magento] Enable maintenance mode';
     }
 
-    public function execute()
+    public function execute(): bool
     {
         $cmd = $this->buildMagentoCommand('maintenance:enable');
 

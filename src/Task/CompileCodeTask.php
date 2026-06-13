@@ -17,17 +17,17 @@ namespace Mage\Magento\Task;
  */
 class CompileCodeTask extends AbstractTask
 {
-    public function getName()
+    public function getName(): string
     {
         return 'magento/compile-code';
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return '[Magento] Runs dependency injection compilation routine';
     }
 
-    public function execute()
+    public function execute(): bool
     {
         $timeout = 120;
         $cmd = $this->buildMagentoCommand('setup:di:compile');

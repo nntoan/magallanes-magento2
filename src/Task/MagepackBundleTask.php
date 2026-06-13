@@ -17,17 +17,17 @@ namespace Mage\Magento\Task;
  */
 class MagepackBundleTask extends AbstractTask
 {
-    public function getName()
+    public function getName(): string
     {
         return 'magepack/bundle';
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return '[Magepack] Generating Bundle';
     }
 
-    public function execute()
+    public function execute(): bool
     {
         $timeout = 300;
         $path = 'magepack.config.js';

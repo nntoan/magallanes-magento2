@@ -17,17 +17,17 @@ namespace Mage\Magento\Task;
  */
 class DeployModeShowTask extends AbstractTask
 {
-    public function getName()
+    public function getName(): string
     {
         return 'magento/show-app-mode';
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return '[Magento] Displays current application mode';
     }
 
-    public function execute()
+    public function execute(): bool
     {
         $cmd = $this->buildMagentoCommand('deploy:mode:show');
 

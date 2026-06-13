@@ -16,17 +16,17 @@ namespace Mage\Magento\Task;
  */
 class CacheFlushTask extends AbstractTask
 {
-    public function getName()
+    public function getName(): string
     {
         return 'magento/cache-flush';
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return '[Magento] Flush Magento cache storage';
     }
 
-    public function execute()
+    public function execute(): bool
     {
         $cmd = $this->buildMagentoCommand('cache:flush');
 

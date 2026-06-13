@@ -17,17 +17,17 @@ namespace Mage\Magento\Task;
  */
 class SetupUpgradeTask extends AbstractTask
 {
-    public function getName()
+    public function getName(): string
     {
         return 'magento/setup-upgrade';
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return '[Magento] Updates the module load sequence and upgrades database schemas and data fixtures';
     }
 
-    public function execute()
+    public function execute(): bool
     {
         $timeout = 120;
         $parameter = ' ';

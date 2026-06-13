@@ -17,17 +17,17 @@ namespace Mage\Magento\Task;
  */
 class ConfigImportTask extends AbstractTask
 {
-    public function getName()
+    public function getName(): string
     {
         return 'magento/config-import';
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return '[Magento] Import data from shared config files';
     }
 
-    public function execute()
+    public function execute(): bool
     {
         $cmd = $this->buildMagentoCommand('app:config:import');
 

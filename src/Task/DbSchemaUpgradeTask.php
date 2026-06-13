@@ -17,17 +17,17 @@ namespace Mage\Magento\Task;
  */
 class DbSchemaUpgradeTask extends AbstractTask
 {
-    public function getName()
+    public function getName(): string
     {
         return 'magento/schema-upgrade';
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return '[Magento] Upgrades database schema';
     }
 
-    public function execute()
+    public function execute(): bool
     {
         $cmd = $this->buildMagentoCommand('setup:db-schema:upgrade');
 

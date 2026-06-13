@@ -18,17 +18,17 @@ namespace Mage\Magento\Task;
  */
 class CustomCommand extends AbstractTask
 {
-    public function getName()
+    public function getName(): string
     {
         return 'magento/custom';
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return '[Magento] Run Magento custom command';
     }
 
-    public function execute()
+    public function execute(): bool
     {
         // Get options from the command level.
         if (array_key_exists('command', $this->options)) {

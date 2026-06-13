@@ -17,17 +17,17 @@ namespace Mage\Magento\Task;
  */
 class ApplyQualityPatchesTask extends AbstractTask
 {
-    public function getName()
+    public function getName(): string
     {
         return 'magento/apply-patches';
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return '[Magento] Apply Quality Patches';
     }
 
-    public function execute()
+    public function execute(): bool
     {
         $timeout = 120;
         $onParamPatches = '';

@@ -17,17 +17,17 @@ namespace Mage\Magento\Task;
  */
 class CacheEnableTask extends AbstractTask
 {
-    public function getName()
+    public function getName(): string
     {
         return 'magento/cache-enable';
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return '[Magento] Enable Magento cache';
     }
 
-    public function execute()
+    public function execute(): bool
     {
         $cmd = $this->buildMagentoCommand('cache:enable');
 

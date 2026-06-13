@@ -17,17 +17,17 @@ namespace Mage\Magento\Task;
  */
 class MagepackSetupTask extends AbstractTask
 {
-    public function getName()
+    public function getName(): string
     {
         return 'magepack/setup';
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return '[Magepack] Set up';
     }
 
-    public function execute()
+    public function execute(): bool
     {
         $timeout = 300;
 

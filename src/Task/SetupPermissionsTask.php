@@ -19,17 +19,17 @@ use Mage\Task\Exception\ErrorException;
  */
 class SetupPermissionsTask extends AbstractTask
 {
-    public function getName()
+    public function getName(): string
     {
         return 'magento/setup-permissions';
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return '[Magento] Sets proper permissions on application';
     }
 
-    public function execute()
+    public function execute(): bool
     {
         if (!array_key_exists('file', $this->options) || !array_key_exists('directory', $this->options)) {
             throw new ErrorException('Parameters "file" and "directory" are required.');

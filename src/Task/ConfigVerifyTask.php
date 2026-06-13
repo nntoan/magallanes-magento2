@@ -17,17 +17,17 @@ namespace Mage\Magento\Task;
  */
 class ConfigVerifyTask extends AbstractTask
 {
-    public function getName()
+    public function getName(): string
     {
         return 'magento/config-verify';
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return '[Magento] Checks if config propagation requires update';
     }
 
-    public function execute()
+    public function execute(): bool
     {
         $cmd = $this->buildMagentoCommand('app:config:status');
 

@@ -17,17 +17,17 @@ namespace Mage\Magento\Task;
  */
 class MaintenanceStatusTask extends AbstractTask
 {
-    public function getName()
+    public function getName(): string
     {
         return 'magento/maintenance-status';
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return '[Magento] Displays maintenance mode status';
     }
 
-    public function execute()
+    public function execute(): bool
     {
         $cmd = $this->buildMagentoCommand('maintenance:status');
 

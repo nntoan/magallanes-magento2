@@ -17,17 +17,17 @@ namespace Mage\Magento\Task;
  */
 class DeployModeProductionTask extends AbstractTask
 {
-    public function getName()
+    public function getName(): string
     {
         return 'magento/deploy-mode-production';
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return '[Magento] Enables production mode';
     }
 
-    public function execute()
+    public function execute(): bool
     {
         $cmd = $this->buildMagentoCommand('deploy:mode:set production --skip-compilation');
 

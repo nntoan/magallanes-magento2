@@ -17,17 +17,17 @@ namespace Mage\Magento\Task;
  */
 class FrontoolsCompileThemesTask extends AbstractTask
 {
-    public function getName()
+    public function getName(): string
     {
         return 'frontools/compile-themes';
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return '[Frontools] Compile theme files';
     }
 
-    public function execute()
+    public function execute(): bool
     {
         $timeout = 120;
 

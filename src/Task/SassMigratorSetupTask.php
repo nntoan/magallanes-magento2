@@ -17,17 +17,17 @@ namespace Mage\Magento\Task;
  */
 class SassMigratorSetupTask extends AbstractTask
 {
-    public function getName()
+    public function getName(): string
     {
         return 'sass-migrator/setup';
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return '[SASS] Migrator Setup';
     }
 
-    public function execute()
+    public function execute(): bool
     {
         $timeout = 120;
 

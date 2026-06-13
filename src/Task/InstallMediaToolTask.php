@@ -17,17 +17,17 @@ namespace Mage\Magento\Task;
  */
 class InstallMediaToolTask extends AbstractTask
 {
-    public function getName()
+    public function getName(): string
     {
         return 'nodejs/install-media-tool';
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return '[NodeJS] Install Media Tool';
     }
 
-    public function execute()
+    public function execute(): bool
     {
         $timeout = 120;
 

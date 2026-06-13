@@ -17,17 +17,17 @@ namespace Mage\Magento\Task;
  */
 class DbStatusTask extends AbstractTask
 {
-    public function getName()
+    public function getName(): string
     {
         return 'magento/db-status';
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return '[Magento] Checks if DB schema or data requires upgrade';
     }
 
-    public function execute()
+    public function execute(): bool
     {
         $cmd = $this->buildMagentoCommand('setup:db:status');
 

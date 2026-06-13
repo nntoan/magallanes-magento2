@@ -17,17 +17,17 @@ namespace Mage\Magento\Task;
  */
 class DbDataUpgradeTask extends AbstractTask
 {
-    public function getName()
+    public function getName(): string
     {
         return 'magento/data-upgrade';
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return '[Magento] Upgrades data fixtures';
     }
 
-    public function execute()
+    public function execute(): bool
     {
         $cmd = $this->buildMagentoCommand('setup:db-data:upgrade');
 
