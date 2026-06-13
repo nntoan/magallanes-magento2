@@ -28,12 +28,12 @@ abstract class AbstractTask extends \Mage\Task\AbstractTask
     const OPT_MAGENTO_DIR = 'magento_dir';
     const OPT_USE_DOCKER = 'use_docker';
 
-    private $magentoCommand = '/usr/bin/env %s -f bin/magento -- %s';
-    private $magentoWithDirCmd = '(cd %s; /usr/bin/env %s -f bin/magento -- %s)';
-    private $customWithDirCmd = '(cd %s; %s)';
-    private $dockerMagentoCmd = 'docker exec -iu www php-fpm sh -c "cd /var/www/%s/src; bin/magento %s"';
-    private $dockerCustomCmd = 'docker exec -iu www php-fpm sh -c "cd /var/www/%s/%s; %s"';
-    private $dockerCustomRootCmd = 'docker exec -i php-fpm sh -c "cd /var/www/%s/%s; %s"';
+    private string $magentoCommand = '/usr/bin/env %s -f bin/magento -- %s';
+    private string $magentoWithDirCmd = '(cd %s; /usr/bin/env %s -f bin/magento -- %s)';
+    private string $customWithDirCmd = '(cd %s; %s)';
+    private string $dockerMagentoCmd = 'docker exec -iu www php-fpm sh -c "cd /var/www/%s/src; bin/magento %s"';
+    private string $dockerCustomCmd = 'docker exec -iu www php-fpm sh -c "cd /var/www/%s/%s; %s"';
+    private string $dockerCustomRootCmd = 'docker exec -i php-fpm sh -c "cd /var/www/%s/%s; %s"';
 
     /**
      * Gets options for the global, then the env, then the single task levels, and
